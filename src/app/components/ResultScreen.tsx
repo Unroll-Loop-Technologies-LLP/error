@@ -1,6 +1,7 @@
 import { motion } from "motion/react";
 import { CheckCircle, Home, RefreshCw, Gamepad2, Trophy } from "lucide-react";
 import { useEffect, useState } from "react";
+import { ShareScoreButtons } from "./ShareScoreButtons";
 
 interface Props {
   score: number;
@@ -106,6 +107,7 @@ export function ResultScreen({ score, gameType, onPlayAgain, onGoHome, onViewLea
             </div>
             <div className="font-['VT323'] text-6xl text-[#00ff41]" style={{ textShadow: "0 0 20px #00ff41" }}>
               {displayScore}
+              <center><ShareScoreButtons score={displayScore} /></center>
             </div>
             <div
               className="font-['Orbitron'] text-lg tracking-wider"
