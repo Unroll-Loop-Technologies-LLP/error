@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-import { AlertTriangle, Play } from "lucide-react";
+import { AlertTriangle, Play, Home } from "lucide-react";
 
 interface Props {
   errorCode?: number;
@@ -111,23 +111,48 @@ export function ErrorLanding({ errorCode = 404, onStartGame }: Props) {
           Prove your cyber defense skills in a randomly selected challenge.
         </p>
 
-        <motion.button
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          onClick={onStartGame}
-          className="relative px-8 py-4 font-['Orbitron'] text-lg tracking-wider bg-[#0a0e27] border-2 border-[#00ff41] text-[#00ff41] hover:bg-[#00ff4120] transition-all overflow-hidden group mt-6"
-          style={{ boxShadow: "0 0 20px #00ff4140" }}
-        >
-          <motion.div
-            className="absolute inset-0 bg-[#00ff41]"
-            initial={{ x: "-100%" }}
-            whileHover={{ x: 0 }}
-            transition={{ duration: 0.3 }}
-            style={{ opacity: 0.1 }}
-          />
-          <Play className="inline-block mr-2 w-6 h-6" />
-          BEGIN SECURITY TRAINING
-        </motion.button>
+        {/* Buttons Container */}
+        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          {/* BEGIN SECURITY TRAINING Button */}
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={onStartGame}
+            className="relative px-8 py-4 font-['Orbitron'] text-lg tracking-wider bg-[#0a0e27] border-2 border-[#00ff41] text-[#00ff41] hover:bg-[#00ff4120] transition-all overflow-hidden group"
+            style={{ boxShadow: "0 0 20px #00ff4140" }}
+          >
+            <motion.div
+              className="absolute inset-0 bg-[#00ff41]"
+              initial={{ x: "-100%" }}
+              whileHover={{ x: 0 }}
+              transition={{ duration: 0.3 }}
+              style={{ opacity: 0.1 }}
+            />
+            <Play className="inline-block mr-2 w-6 h-6" />
+            BEGIN SECURITY TRAINING
+          </motion.button>
+
+          {/* GO TO HOME PAGE Button */}
+          <motion.a
+            href="https://unrollloop.com"
+            target="_self"
+            rel="noopener noreferrer"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="relative px-8 py-4 font-['Orbitron'] text-lg tracking-wider bg-[#0a0e27] border-2 border-[#ffb000] text-[#ffb000] hover:bg-[#ffb00020] transition-all overflow-hidden group inline-block"
+            style={{ boxShadow: "0 0 20px #ffb00040" }}
+          >
+            <motion.div
+              className="absolute inset-0 bg-[#ffb000]"
+              initial={{ x: "-100%" }}
+              whileHover={{ x: 0 }}
+              transition={{ duration: 0.3 }}
+              style={{ opacity: 0.1 }}
+            />
+            <Home className="inline-block mr-2 w-6 h-6" />
+            GO TO HOME PAGE
+          </motion.a>
+        </div>
       </motion.div>
 
       {/* Footer glitch text */}
