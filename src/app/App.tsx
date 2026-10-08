@@ -69,8 +69,9 @@ export default function App() {
   const [finalScore, setFinalScore] = useState(0);
   const [username, setUsername] = useState("");
   const [leaderboardEntries, setLeaderboardEntries] = useState<LeaderboardEntry[]>([]);
+  const [errorCode, setErrorCode] = useState(404);
 
-  // Load leaderboard and username from localStorage
+  // Load leaderboard, username, and error code from query params
   useEffect(() => {
     const savedLeaderboard = localStorage.getItem(LEADERBOARD_KEY);
     if (savedLeaderboard) {
@@ -84,6 +85,16 @@ export default function App() {
     const savedUsername = localStorage.getItem(USERNAME_KEY);
     if (savedUsername) {
       setUsername(savedUsername);
+    }
+
+    // Get error code from URL query parameter
+    const params = new URLSearchParams(window.location.search);
+    const codeParam = params.get("code");
+    if (codeParam) {
+      const parsedCode = parseInt(codeParam, 10);
+      if (!isNaN(parsedCode)) {
+        setErrorCode(parsedCode);
+      }
     }
   }, []);
 
@@ -199,7 +210,7 @@ export default function App() {
               exit={{ opacity: 0 }}
               className="w-full"
             >
-              <ErrorLanding errorCode={404} onStartGame={selectRandomGame} />
+              <ErrorLanding errorCode={errorCode} onStartGame={selectRandomGame} />
             </motion.div>
           )}
 
